@@ -1,26 +1,45 @@
 .text
-# Passar cabeca, calda, e tamanho:
-# a3 tamanho
-# a1 cabeca
-# a2 calda
+# s4 vetor cobra 
+right:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
+	sw ra, 0(sp)
+	sw s0, 4(sp)
+	sw s1, 8(sp)
+	sw s2, 12(sp)
+	sw s3, 16(sp)
 
-
-left:	
-	addi t0, ra, 0 # guarda retorno
-	addi t1, a1, 0 # guarda cabeca
-	srli a0, a1, 16 #
-	addi a0, a0, 1 #guarda valor da cabeca + 1 em x para mover a cobra 
-	slli a0, a0, 16
-	li t2, 0x0000FFFF
-	and t1, t1, t2
-	add a0, a0, t1
-	li a1, 0x0000
+	li s1, 0	# Contador inicia em 0
+	
+	addi a0, s4, 4	# pega endereco do rabo da cobra
+	lw a0, (a0) 	# carrega valor do rabo
+	li a1, 0x00228B22	# cor de fundo
+	jal Ponto 	# apaga rabo da cobra
+	
+	lw s0, 0(s4) 	# Carrega tamanho da cobra
+	slli s0, s0, 2	# Multiplica por 4
+	add a0, s4, s0 	# pega o endereco da cabeca da cobra
+	lw a0, (a0)
+	li t0, 0x00010000 # valor um na coordenada x
+	add a0, a0, t0 	# adiciona 1 a cordenada x da cabeca da cobra
+	add s2, a0, zero # coordenada da nova cabeca
+	add s3, s4, s0 # ultimo endereco do vetor
+	li a1, 0x0000	# cor preta
 	jal Ponto
 	
-	addi t1, a2, 0 # guarda calda
-	srli a0, a2, 16 #
-	addi a0, a2, -1 #guarda valor da calda - 1 para mover a cobra
-	li a1, 0x00228B22 #valor da cor para apagar o ponto quando move
-	jal Ponto
-	addi ra, t0, 0 # pega retorno para main
+	addi s0, s0, -4 # faz o loop não pegar valores de endereco indevido
+	RL:	beq s0, s1, endRL
+		addi s1, s1, 8
+		add a0, s4, s1 #endereco de cada ponto
+		addi a1, a0, -4
+		lw a0, (a0)
+		sw a0, (a1)
+		addi s1, s1, -4
+		j RL
+		
+endRL:	sw s2, (s3)
+	lw ra, 0(sp)
+	lw s0, 4(sp)
+	lw s1, 8(sp)
+	lw s2, 12(sp)
+	lw s3, 16(sp)
+	addi sp, sp, 16
 	ret
