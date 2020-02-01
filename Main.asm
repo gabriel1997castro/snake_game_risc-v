@@ -49,11 +49,17 @@ li a2, 0x0014000F
 
 KEYBOARD: 	jal KEY2
 		beq s11, s1, RIGHT # compara se o valor lido do teclado eh `d`
+		beq s11, s3, UP # compara se o valor lido do teclado eh `W`
+		beq s11, s2, DOWN # compara se o valor lido do teclado eh `s'
 		j KEYBOARD
 
 RIGHT:		jal right
 		j KEYBOARD
-
+UP:		jal up
+		j KEYBOARD
+DOWN:		jal down
+		j KEYBOARD
+		
 FIMSNAKE:
 #Finaliza o programa
 li a7, 10
