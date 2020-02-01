@@ -48,9 +48,10 @@ li a1, 0x0015000F
 li a2, 0x0014000F
 
 KEYBOARD: 	jal KEY2
-		beq s11, s1, RIGHT # compara se o valor lido do teclado eh `d`
-		beq s11, s3, UP # compara se o valor lido do teclado eh `W`
-		beq s11, s2, DOWN # compara se o valor lido do teclado eh `s'
+		beq s11, s1, RIGHT # compara se o valor lido do teclado eh 'd'
+		beq s11, s3, UP # compara se o valor lido do teclado eh 'w'
+		beq s11, s2, DOWN # compara se o valor lido do teclado eh 's'
+		beq s11, s0, LEFT # compara se o valor lido do teclado eh 'a'
 		j KEYBOARD
 
 RIGHT:		jal right
@@ -59,7 +60,8 @@ UP:		jal up
 		j KEYBOARD
 DOWN:		jal down
 		j KEYBOARD
-		
+LEFT:		jal left
+		j KEYBOARD		
 FIMSNAKE:
 #Finaliza o programa
 li a7, 10

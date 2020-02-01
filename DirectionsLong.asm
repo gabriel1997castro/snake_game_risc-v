@@ -26,7 +26,24 @@ right:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	jal Ponto
 	
 	addi s0, s0, -4 # faz o loop n?o pegar valores de endereco indevido
-	jal directionLoop
+	RL:	beq s0, s1, endRL
+		addi s1, s1, 8
+		add a0, s4, s1 #endereco de cada ponto
+		addi a1, a0, -4
+		lw a0, (a0)
+		sw a0, (a1)
+		addi s1, s1, -4
+		j RL
+		
+endRL:	sw s2, (s3)
+	lw ra, 0(sp)
+	lw s0, 4(sp)
+	lw s1, 8(sp)
+	lw s2, 12(sp)
+	lw s3, 16(sp)
+	addi sp, sp, 16
+	ret
+	
 ########################################################################################################################
 down:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	sw ra, 0(sp)
@@ -54,7 +71,25 @@ down:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	jal Ponto
 	
 	addi s0, s0, -4 # faz o loop n?o pegar valores de endereco indevido
-	jal directionLoop
+	DL:	beq s0, s1, endDL # Down Loop
+		addi s1, s1, 8
+		add a0, s4, s1 # endereco de cada ponto
+		addi a1, a0, -4
+		lw a0, (a0)
+		sw a0, (a1)
+		addi s1, s1, -4
+		j DL
+		
+endDL:	sw s2, (s3)
+	lw ra, 0(sp)
+	lw s0, 4(sp)
+	lw s1, 8(sp)
+	lw s2, 12(sp)
+	lw s3, 16(sp)
+	addi sp, sp, 16
+	ret
+	
+
 ########################################################################################################################
 up:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	sw ra, 0(sp)
@@ -82,7 +117,23 @@ up:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	jal Ponto
 	
 	addi s0, s0, -4 # faz o loop n?o pegar valores de endereco indevido
-	jal directionLoop
+	UL:	beq s0, s1, endUL # Up Loop
+		addi s1, s1, 8
+		add a0, s4, s1 # endereco de cada ponto
+		addi a1, a0, -4
+		lw a0, (a0)
+		sw a0, (a1)
+		addi s1, s1, -4
+		j UL
+		
+endUL:	sw s2, (s3)
+	lw ra, 0(sp)
+	lw s0, 4(sp)
+	lw s1, 8(sp)
+	lw s2, 12(sp)
+	lw s3, 16(sp)
+	addi sp, sp, 16
+	ret
 ########################################################################################################################
 left:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	sw ra, 0(sp)
@@ -110,22 +161,20 @@ left:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	jal Ponto
 	
 	addi s0, s0, -4 # faz o loop n?o pegar valores de endereco indevido
-	jal directionLoop
-###########################################################################################################
-directionLoop:	beq s0, s1, endDirectionLoop
+	LL:	beq s0, s1, endLL # Up Loop
 		addi s1, s1, 8
 		add a0, s4, s1 # endereco de cada ponto
 		addi a1, a0, -4
 		lw a0, (a0)
 		sw a0, (a1)
 		addi s1, s1, -4
-		j directionLoop
+		j LL
 		
-endDirectionLoop:	sw s2, (s3)
-			lw ra, 0(sp)
-			lw s0, 4(sp)
-			lw s1, 8(sp)
-			lw s2, 12(sp)
-			lw s3, 16(sp)
-			addi sp, sp, 16
-			ret	
+endLL:	sw s2, (s3)
+	lw ra, 0(sp)
+	lw s0, 4(sp)
+	lw s1, 8(sp)
+	lw s2, 12(sp)
+	lw s3, 16(sp)
+	addi sp, sp, 16
+	ret	
