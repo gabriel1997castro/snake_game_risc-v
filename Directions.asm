@@ -51,6 +51,8 @@ down:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	li t0, 0x00000001 # valor um na coordenada y
 	add a0, a0, t0 	# adiciona 1 a cordenada y da cabeca da cobra
 	add s2, a0, zero # coordenada da nova cabeca
+	jal VerificaBordaAbaixo 
+	
 	add s3, s4, s0 # ultimo endereco do vetor
 	li a1, 0x0000	# cor preta
 	jal Ponto
@@ -79,6 +81,8 @@ up:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	li t0, 0x00000001 # valor um na coordenada y
 	sub a0, a0, t0 	# subtrai 1 a cordenada y da cabeca da cobra
 	add s2, a0, zero # coordenada da nova cabeca
+	jal VerificaBordaAcima
+	
 	add s3, s4, s0 # ultimo endereco do vetor
 	li a1, 0x0000	# cor preta
 	jal Ponto
@@ -146,4 +150,20 @@ VerificaBordaEsquerda:
 	srli t3, t0, 16 # pega x
 	li t1, 0x00000002 # borda direira
 	ble t3, t1, LOSE
+	ret
+	
+VerificaBordaAbaixo:
+	add t0, s2, zero # Carrega ponto a direita da cabeça da cobra
+	li t1, 0x0000FFFF
+	and t0, t0, t1  # pega y
+	li t1, 0x0000001B # borda direira
+	bge t0, t1, LOSE
+	ret
+	
+VerificaBordaAcima:
+	add t0, s2, zero # Carrega ponto a direita da cabeça da cobra
+	li t1, 0x0000FFFF
+	and t0, t0, t1  # pega y
+	li t1, 0x00000005 # borda direira
+	ble t0, t1, LOSE
 	ret

@@ -38,18 +38,18 @@ ecall
 
 #----linha mais interna do retangulo
 li a0, 15		# x0=15
-li a1, 40		# y0=45
+li a1, 39		# y0=45
 li a2, 305		# x1=305
-li a3, 40		# y1=45
+li a3, 39		# y1=45
 li a4, 0x0000		# cor preta
 li a5, 0			# frame = 0
 li a7, 147
 ecall 
 #----
 li a0, 15
-li a1, 39
+li a1, 38
 li a2, 305
-li a3, 39
+li a3, 38
 li a4, 0x0000
 li a5, 0
 li a7, 147
