@@ -21,6 +21,7 @@ right:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	li t0, 0x00010000 # valor um na coordenada x
 	add a0, a0, t0 	# adiciona 1 a cordenada x da cabeca da cobra
 	add s2, a0, zero # coordenada da nova cabeca
+
 	add s3, s4, s0 # ultimo endereco do vetor
 	li a1, 0x0000	# cor preta
 	jal Ponto

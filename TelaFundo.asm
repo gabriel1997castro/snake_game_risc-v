@@ -17,18 +17,18 @@ ecall
 
 #linha superior fora do retangulo
 li a0, 15
-li a1, 40
+li a1, 35
 li a2, 305
-li a3, 40
+li a3, 35
 li a4, 0x0000
 li a5, 0
 li a7, 147
 ecall 
 
 li a0, 15
-li a1, 39
+li a1, 34
 li a2, 305
-li a3, 39
+li a3, 34
 li a4, 0x0000
 li a5, 0
 li a7, 147
@@ -38,18 +38,18 @@ ecall
 
 #----linha mais interna do retangulo
 li a0, 15		# x0=15
-li a1, 45		# y0=45
+li a1, 40		# y0=45
 li a2, 305		# x1=305
-li a3, 45		# y1=45
+li a3, 40		# y1=45
 li a4, 0x0000		# cor preta
 li a5, 0			# frame = 0
 li a7, 147
 ecall 
 #----
 li a0, 15
-li a1, 44
+li a1, 39
 li a2, 305
-li a3, 44
+li a3, 39
 li a4, 0x0000
 li a5, 0
 li a7, 147
@@ -57,19 +57,19 @@ ecall
 ##################### Linha lateral direita
 
 #----linha mais interna do retangulo
-li a0, 305
-li a1, 45
-li a2, 305
-li a3, 220
+li a0, 304
+li a1, 40
+li a2, 304
+li a3, 224
 li a4, 0x0000
 li a5, 0
 li a7, 147
 ecall 
 #----
-li a0, 306
-li a1, 45
-li a2, 306
-li a3, 220
+li a0, 305
+li a1, 40
+li a2, 305
+li a3, 224
 li a4, 0x0000
 li a5, 0
 li a7, 147
@@ -78,18 +78,18 @@ ecall
 
 #----linha mais interna do retangulo
 li a0, 306
-li a1, 220
+li a1, 224
 li a2, 15
-li a3, 220
+li a3, 224
 li a4, 0x0000
 li a5, 0
 li a7, 147
 ecall 
 #----
 li a0, 306
-li a1, 221
+li a1, 225
 li a2, 15
-li a3, 221
+li a3, 225
 li a4, 0x0000
 li a5, 0
 li a7, 147
@@ -98,18 +98,18 @@ ecall
 
 #----linha mais interna do retangulo
 li a0, 15
-li a1, 220
+li a1, 224
 li a2, 15
-li a3, 45
+li a3, 40
 li a4, 0x0000
 li a5, 0
 li a7, 147
 ecall
 #----
 li a0, 14
-li a1, 220
+li a1, 224
 li a2, 14
-li a3, 45
+li a3, 40
 li a4, 0x0000
 li a5, 0
 li a7, 147
