@@ -72,4 +72,5 @@ ecall
 .include "Ponto.asm"
 .include "key.asm"
 .include "Directions.asm"
+.include "Lose.asm"
 .include "DesenhaCobra.asm"
