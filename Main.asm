@@ -29,20 +29,6 @@ jal TelaFundo
 jal DesenhaCobra
 
 
-#li a0, 0x0014000F
-#li a1, 0x0000
-
-#jal Ponto
-#li a0, 0x0015000F
-#li a1, 0x0000
-
-#jal Ponto
-
-# Passar cabeca, calda, e tamanho:
-# a3 tamanho
-# a1 cabeca
-# a2 calda
-
 li a3, 2 #tamanho da cobra
 li a1, 0x0015000F
 li a2, 0x0014000F

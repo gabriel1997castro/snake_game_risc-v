@@ -50,7 +50,6 @@ down:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	li t0, 0x00000001 # valor um na coordenada y
 	add a0, a0, t0 	# adiciona 1 a cordenada y da cabeca da cobra
 	add s2, a0, zero # coordenada da nova cabeca
-	#jal VerificaBordaAbaixo 
 	
 	add s3, s4, s0 # ultimo endereco do vetor
 	li a1, 0x0000	# cor preta
@@ -80,7 +79,6 @@ up:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	li t0, 0x00000001 # valor um na coordenada y
 	sub a0, a0, t0 	# subtrai 1 a cordenada y da cabeca da cobra
 	add s2, a0, zero # coordenada da nova cabeca
-	#jal VerificaBordaAcima
 	
 	add s3, s4, s0 # ultimo endereco do vetor
 	li a1, 0x0000	# cor preta
@@ -110,7 +108,6 @@ left:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	li t0, 0x00010000 # valor um na coordenada y
 	sub a0, a0, t0 	# subtrai 1 a cordenada y da cabeca da cobra
 	add s2, a0, zero # coordenada da nova cabeca
-	#jal VerificaBordaEsquerda
 	
 	add s3, s4, s0 # ultimo endereco do vetor
 	li a1, 0x0000	# cor preta
