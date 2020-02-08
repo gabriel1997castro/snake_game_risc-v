@@ -21,9 +21,7 @@ right:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	li t0, 0x00010000 # valor um na coordenada x
 	add a0, a0, t0 	# adiciona 1 a cordenada x da cabeca da cobra
 	add s2, a0, zero # coordenada da nova cabeca
-	#beq s11, 
-	#jal VerificaBordaDireita
-	
+
 	add s3, s4, s0 # ultimo endereco do vetor
 	li a1, 0x0000	# cor preta
 	jal Ponto
@@ -139,46 +137,12 @@ endDirectionLoop:	sw s2, (s3)
 			addi sp, sp, 16
 			ret	
 
-VerificaBordaDireita:
-	add t0, s2, zero # Carrega ponto a direita da cabeça da cobra
-	srli t3, t0, 16 # pega x
-	li t1, 0x00000025 # borda direira
-	bge t3, t1, LOSE
-	ret
-	
-VerificaBordaEsquerda:
-	add t0, s2, zero # Carrega ponto a esquerda da cabeça da cobra
-	srli t3, t0, 16 # pega x
-	li t1, 0x00000002 # borda direira
-	ble t3, t1, LOSE
-	ret
-	
-VerificaBordaAbaixo:
-	add t0, s2, zero # Carrega ponto a direita da cabeça da cobra
-	li t1, 0x0000FFFF
-	and t0, t0, t1  # pega y
-	li t1, 0x0000001B # borda direira
-	bge t0, t1, LOSE
-	ret
-	
-VerificaBordaAcima:
-	add t0, s2, zero # Carrega ponto a direita da cabeça da cobra
-	li t1, 0x0000FFFF
-	and t0, t0, t1  # pega y
-	li t1, 0x00000005 # borda direira
-	ble t0, t1, LOSE
-	ret
-
 verificaDireita:
 	addi sp, sp, -8	# espaco na pilha para registradores salvos e ra
 	sw ra, 0(sp)
 	sw s0, 4(sp)
 	
-	lw s0, 0(s4) 	# Carrega tamanho da cobra
-	slli s0, s0, 2	# Multiplica por 4
-	add a0, s4, s0 	# pega o endereco da cabeca da cobra
-	lw a0, (a0)###############################################################################################################33
-	add t0, a0, zero # Carrega ponto a direita da cabeça da cobra
+	jal pegaCabeca
 	srli t3, t0, 16 # pega x
 	li t1, 0x00000025 # borda direira
 	
@@ -195,13 +159,9 @@ verificaEsquerda:
 	sw ra, 0(sp)
 	sw s0, 4(sp)
 	
-	lw s0, 0(s4) 	# Carrega tamanho da cobra
-	slli s0, s0, 2	# Multiplica por 4
-	add a0, s4, s0 	# pega o endereco da cabeca da cobra
-	lw a0, (a0)###############################################################################################################33
-	add t0, a0, zero # Carrega ponto a direita da cabeça da cobra
+	jal pegaCabeca
 	srli t3, t0, 16 # pega x
-	li t1, 0x00000002 # borda direira
+	li t1, 0x00000002 # borda esquerda
 	
 	ble t3, t1, L1
 	bgt t3, t1, L2
@@ -217,14 +177,10 @@ verificaAcima:
 	sw ra, 0(sp)
 	sw s0, 4(sp)
 	
-	lw s0, 0(s4) 	# Carrega tamanho da cobra
-	slli s0, s0, 2	# Multiplica por 4
-	add a0, s4, s0 	# pega o endereco da cabeca da cobra
-	lw a0, (a0)###############################################################################################################33
-	add t0, a0, zero # Carrega ponto a direita da cabeça da cobra
+	jal pegaCabeca
 	li t1, 0x0000FFFF
 	and t3, t0, t1
-	li t1, 0x00000005 # borda direira
+	li t1, 0x00000005 # borda de cima
 	
 	ble t3, t1, U1
 	bgt t3, t1, U2
@@ -239,14 +195,10 @@ verificaAbaixo:
 	sw ra, 0(sp)
 	sw s0, 4(sp)
 	
-	lw s0, 0(s4) 	# Carrega tamanho da cobra
-	slli s0, s0, 2	# Multiplica por 4
-	add a0, s4, s0 	# pega o endereco da cabeca da cobra
-	lw a0, (a0)###############################################################################################################33
-	add t0, a0, zero # Carrega ponto a direita da cabeça da cobra
+	jal pegaCabeca
 	li t1, 0x0000FFFF
 	and t3, t0, t1
-	li t1, 0x0000001B # borda direira
+	li t1, 0x0000001B # borda de baixo
 	
 	bge t3, t1, D1
 	blt t3, t1, D2
@@ -255,3 +207,10 @@ verificaAbaixo:
 		lw s0, 4(sp)
 		addi sp, sp, 8
 		ret	
+		
+pegaCabeca:
+	lw s0, 0(s4) 	# Carrega tamanho da cobra
+	slli s0, s0, 2	# Multiplica por 4
+	add t0, s4, s0 	# pega o endereco da cabeca da cobra
+	lw t0, (t0) 	# Carrega a coordenada
+	ret
