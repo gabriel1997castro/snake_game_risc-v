@@ -169,28 +169,68 @@ VerificaBordaAcima:
 	ble t0, t1, LOSE
 	ret
 
-r:	addi sp, sp, -12	# espaco na pilha para registradores salvos e ra
+verificaDireita:
+	addi sp, sp, -8	# espaco na pilha para registradores salvos e ra
 	sw ra, 0(sp)
 	sw s0, 4(sp)
-	sw s2, 8(sp)
 	
 	lw s0, 0(s4) 	# Carrega tamanho da cobra
 	slli s0, s0, 2	# Multiplica por 4
 	add a0, s4, s0 	# pega o endereco da cabeca da cobra
-	lw a0, (a0)
-	#li t0, 0x00010000 # valor um na coordenada x
-	#add a0, a0, t0 	# adiciona 1 a cordenada x da cabeca da cobra
-	add s2, a0, zero # coordenada da nova cabeca
+	lw a0, (a0)###############################################################################################################33
 	add t0, a0, zero # Carrega ponto a direita da cabeça da cobra
 	srli t3, t0, 16 # pega x
 	li t1, 0x00000025 # borda direira
 	
-	bge t3, t1, L1
-	blt t3, t1, L2
-	L1 : jal LOSE
-	L2:	#sw s2, (s3)
-		lw ra, 0(sp)
+	bge t3, t1, R1
+	blt t3, t1, R2
+	R1 : jal LOSE
+	R2:	lw ra, 0(sp)
 		lw s0, 4(sp)
-		lw s2, 8(sp)
-		addi sp, sp, 12
+		addi sp, sp, 8
 		ret
+		
+verificaEsquerda:
+	addi sp, sp, -8	# espaco na pilha para registradores salvos e ra
+	sw ra, 0(sp)
+	sw s0, 4(sp)
+	
+	lw s0, 0(s4) 	# Carrega tamanho da cobra
+	slli s0, s0, 2	# Multiplica por 4
+	add a0, s4, s0 	# pega o endereco da cabeca da cobra
+	lw a0, (a0)###############################################################################################################33
+	add t0, a0, zero # Carrega ponto a direita da cabeça da cobra
+	srli t3, t0, 16 # pega x
+	li t1, 0x00000002 # borda direira
+	
+	ble t3, t1, L1
+	bgt t3, t1, L2
+	L1 : jal LOSE
+	L2:	lw ra, 0(sp)
+		lw s0, 4(sp)
+		addi sp, sp, 8
+		ret
+
+
+verificaAcima:
+	addi sp, sp, -8	# espaco na pilha para registradores salvos e ra
+	sw ra, 0(sp)
+	sw s0, 4(sp)
+	
+	lw s0, 0(s4) 	# Carrega tamanho da cobra
+	slli s0, s0, 2	# Multiplica por 4
+	add a0, s4, s0 	# pega o endereco da cabeca da cobra
+	lw a0, (a0)###############################################################################################################33
+	add t0, a0, zero # Carrega ponto a direita da cabeça da cobra
+	li t1, 0x0000FFFF
+	and t3, t0, t1
+	li t1, 0x00000005 # borda direira
+	
+	ble t3, t1, U1
+	bgt t3, t1, U2
+	U1 : jal LOSE
+	U2:	lw ra, 0(sp)
+		lw s0, 4(sp)
+		addi sp, sp, 8
+		ret
+		

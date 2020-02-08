@@ -49,15 +49,20 @@ li a2, 0x0014000F
 
 KEYBOARD: 	jal KEY2
 		beq s11, s1, R # compara se o valor lido do teclado eh 'd'
-		beq s11, s1, RIGHT # compara se o valor lido do teclado eh 'd'
-		beq s11, s3, UP # compara se o valor lido do teclado eh 'w'
+		#beq s11, s1, RIGHT # compara se o valor lido do teclado eh 'd'
+		beq s11, s3, U # compara se o valor lido do teclado eh 'w'
 		beq s11, s2, DOWN # compara se o valor lido do teclado eh 's'
-		beq s11, s0, LEFT # compara se o valor lido do teclado eh 'a'
+		beq s11, s0, L # compara se o valor lido do teclado eh 'a'
 		j KEYBOARD
 
-R: 
-	jal r
+R: 	jal verificaDireita
 	beq s11, s1, RIGHT # compara se o valor lido do teclado eh 'd'
+	j KEYBOARD
+L:	jal verificaEsquerda
+	beq s11, s0, LEFT # compara se o valor lido do teclado eh 'd'
+	j KEYBOARD
+U:	jal verificaAcima
+	beq s11, s3, UP # compara se o valor lido do teclado eh 'd'
 	j KEYBOARD
 RIGHT:		jal right
 		j KEYBOARD
