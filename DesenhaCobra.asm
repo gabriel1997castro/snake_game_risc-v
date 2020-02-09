@@ -12,7 +12,7 @@ Loop:	beq s5, s6, fimLoop
 	add t2, s5, s4 	# guarda endereço da proxima posicao da cobra
 	lw a0, (t2) 	# guarda a proxima posicao
 	li a1, 0x0000	# cor da cobra
-	jal Ponto
+	jal PontoDireita
 	j Loop 
 	
 fimLoop:	add ra, s10, zero
