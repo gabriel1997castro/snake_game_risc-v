@@ -12,7 +12,9 @@
 #csrsi ustatus,1 	# seta o bit de habilitação de interrupção em ustatus (reg 0)
 
 PontoSobe:
+li t0, 0x00000007 # valor um na coordenada y
 slli a0, a0, 3 #Converte pontos de 40x30 para 320x240
+add a0, a0, t0 # Somou 7 porque a cobra anda pro lado contrario
 li t3, 0x0000FFFF
 li t4, 0xFFFF0000
 li t6, -7

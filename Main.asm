@@ -69,7 +69,7 @@ ecall
 
 .include "SYSTEMv17b.s"
 .include "TelaFundo.asm"
-.include "Ponto.asm"
+#.include "Ponto.asm"
 .include "PontoDireita.asm"
 .include "PontoEsquerda.asm"
 .include "PontoBaixo.asm"
