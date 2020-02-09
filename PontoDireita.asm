@@ -22,9 +22,9 @@ addi t0, a0, 0	# t0 recebe a coordenada
 addi t1, a1, 0	# t1 recebe a cor
 li t5, 0
 
-and a1, t0, t3	# a0 recebe os 16 primeiros bits (coordenada y0)
-and a0, t0, t4	# a1 recebe os 16 menos significativos x0
-srli a0, a0, 16 	# 
+and a1, t0, t3	# a1 recebe os 16 menos significativos x0 
+and a0, t0, t4	# a0 recebe os 16 primeiros bits (coordenada y0)
+srli a0, a0, 16 
 
 addi a2, a0, 0
 addi a3, a1, 8

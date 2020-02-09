@@ -210,7 +210,7 @@ verificaAbaixo:
 		addi sp, sp, 8
 		ret	
 ###########################################################################################################
-		
+
 pegaCabeca:
 	lw s0, 0(s4) 	# Carrega tamanho da cobra
 	slli s0, s0, 2	# Multiplica por 4
