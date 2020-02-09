@@ -133,7 +133,7 @@ endDirectionLoop:	sw s2, (s3)
 			lw s3, 16(sp)
 			addi sp, sp, 16
 			ret	
-
+###########################################################################################################
 verificaDireita:
 	addi sp, sp, -8	# espaco na pilha para registradores salvos e ra
 	sw ra, 0(sp)
@@ -151,6 +151,7 @@ verificaDireita:
 		addi sp, sp, 8
 		ret
 		
+###########################################################################################################
 verificaEsquerda:
 	addi sp, sp, -8	# espaco na pilha para registradores salvos e ra
 	sw ra, 0(sp)
@@ -167,7 +168,7 @@ verificaEsquerda:
 		lw s0, 4(sp)
 		addi sp, sp, 8
 		ret
-
+###########################################################################################################
 
 verificaAcima:
 	addi sp, sp, -8	# espaco na pilha para registradores salvos e ra
@@ -186,6 +187,7 @@ verificaAcima:
 		lw s0, 4(sp)
 		addi sp, sp, 8
 		ret
+###########################################################################################################
 
 verificaAbaixo:
 	addi sp, sp, -8	# espaco na pilha para registradores salvos e ra
@@ -204,6 +206,7 @@ verificaAbaixo:
 		lw s0, 4(sp)
 		addi sp, sp, 8
 		ret	
+###########################################################################################################
 		
 pegaCabeca:
 	lw s0, 0(s4) 	# Carrega tamanho da cobra

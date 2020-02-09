@@ -1,5 +1,7 @@
 .data
-
+.data
+NUM_MUS_PERDEU: .word 5
+NOTAS_PERDEU: 63,800,67,800,70,600,81,500,76,1000 
 cobra: 	.align 2 #Align in words
 	.space 1024
 	
@@ -72,3 +74,4 @@ ecall
 .include "Directions.asm"
 .include "Lose.asm"
 .include "DesenhaCobra.asm"
+.include "MusicaPerdeu.s"
