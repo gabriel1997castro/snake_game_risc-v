@@ -28,7 +28,10 @@ sw t0, 12(s4)		#coloca a cabeca no vetor
 
 jal TelaFundo
 jal DesenhaCobra
+li s6, 10000
+jal Sleep
 jal Frutinha
+jal Sleep
 
 li a3, 2 #tamanho da cobra
 li a1, 0x0015000F
@@ -79,3 +82,4 @@ ecall
 .include "DesenhaCobra.asm"
 .include "MusicaPerdeu.s"
 .include "frutinha.asm"
+.include "TimeSleep.asm"
