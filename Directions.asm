@@ -6,13 +6,8 @@ right:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	sw s1, 8(sp)
 	sw s2, 12(sp)
 	sw s3, 16(sp)
-
-	li s1, 0	# Contador inicia em 0
 	
-	addi a0, s4, 4	# pega endereco do rabo da cobra
-	lw a0, (a0) 	# carrega valor do rabo
-	li a1, 0x00228B22	# cor de fundo
-	jal PontoDireita 	# apaga rabo da cobra
+	li s1, 0	# Contador inicia em 0
 	
 	lw s0, 0(s4) 	# Carrega tamanho da cobra
 	slli s0, s0, 2	# Multiplica por 4
@@ -21,13 +16,21 @@ right:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	li t0, 0x00010000 # valor um na coordenada x
 	add a0, a0, t0 	# adiciona 1 a cordenada x da cabeca da cobra
 	add s2, a0, zero # coordenada da nova cabeca
-
+	
 	add s3, s4, s0 # ultimo endereco do vetor
 	li a1, 0x0000	# cor preta
 	jal PontoDireita
 	
+	beq s5, s2, Grow	
+		
+	addi a0, s4, 4	# pega endereco do rabo da cobra
+	lw a0, (a0) 	# carrega valor do rabo
+	li a1, 0x00228B22	# cor de fundo
+	jal PontoDireita 	# apaga rabo da cobra
+	
 	addi s0, s0, -4 # faz o loop n?o pegar valores de endereco indevido
 	jal directionLoop
+
 ########################################################################################################################
 down:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	sw ra, 0(sp)
@@ -38,10 +41,6 @@ down:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 
 	li s1, 0	# Contador inicia em 0
 	
-	addi a0, s4, 4	# pega endereco do rabo da cobra
-	lw a0, (a0) 	# carrega valor do rabo
-	li a1, 0x00228B22	# cor de fundo
-	jal PontoBaixo 	# apaga rabo da cobra
 	
 	lw s0, 0(s4) 	# Carrega tamanho da cobra
 	slli s0, s0, 2	# Multiplica por 4
@@ -55,6 +54,13 @@ down:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	li a1, 0x0000	# cor preta
 	jal PontoBaixo
 	
+	beq s5, s2, Grow
+
+	addi a0, s4, 4	# pega endereco do rabo da cobra
+	lw a0, (a0) 	# carrega valor do rabo
+	li a1, 0x00228B22	# cor de fundo
+	jal PontoBaixo 	# apaga rabo da cobra
+	
 	addi s0, s0, -4 # faz o loop n?o pegar valores de endereco indevido
 	jal directionLoop
 ########################################################################################################################
@@ -67,10 +73,6 @@ up:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 
 	li s1, 0	# Contador inicia em 0
 	
-	addi a0, s4, 4	# pega endereco do rabo da cobra
-	lw a0, (a0) 	# carrega valor do rabo
-	li a1, 0x00228B22	# cor de fundo
-	jal PontoSobe	# apaga rabo da cobra
 	
 	lw s0, 0(s4) 	# Carrega tamanho da cobra
 	slli s0, s0, 2	# Multiplica por 4
@@ -84,6 +86,13 @@ up:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	li a1, 0x0000	# cor preta
 	jal PontoSobe
 	
+	beq s5, s2, Grow
+
+	addi a0, s4, 4	# pega endereco do rabo da cobra
+	lw a0, (a0) 	# carrega valor do rabo
+	li a1, 0x00228B22	# cor de fundo
+	jal PontoSobe	# apaga rabo da cobra
+	
 	addi s0, s0, -4 # faz o loop n?o pegar valores de endereco indevido
 	jal directionLoop
 ########################################################################################################################
@@ -96,12 +105,6 @@ left:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 
 	li s1, 0	# Contador inicia em 0
 	
-	addi a0, s4, 4	# pega endereco do rabo da cobra
-	lw a0, (a0) 	# carrega valor do rabo
-	li a1, 0x00228B22	# cor de fundo
-	#li t0, 0x00010000 # valor um na coordenada y
-	#add a0, a0, t0
-	jal PontoEsquerda 	# apaga rabo da cobra
 	
 	lw s0, 0(s4) 	# Carrega tamanho da cobra
 	slli s0, s0, 2	# Multiplica por 4
@@ -113,8 +116,14 @@ left:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	
 	add s3, s4, s0 # ultimo endereco do vetor
 	li a1, 0x0000	# cor preta
-	#add a0, a0, t0
 	jal PontoEsquerda
+
+	beq s5, s2, Grow
+	
+	addi a0, s4, 4	# pega endereco do rabo da cobra
+	lw a0, (a0) 	# carrega valor do rabo
+	li a1, 0x00228B22	# cor de fundo
+	jal PontoEsquerda 	# apaga rabo da cobra
 	
 	addi s0, s0, -4 # faz o loop n?o pegar valores de endereco indevido
 	jal directionLoop
@@ -134,7 +143,7 @@ endDirectionLoop:	sw s2, (s3)
 			lw s1, 8(sp)
 			lw s2, 12(sp)
 			lw s3, 16(sp)
-			addi sp, sp, 16
+			addi sp, sp, 20
 			ret	
 ###########################################################################################################
 verificaDireita:
@@ -190,6 +199,7 @@ verificaAcima:
 		lw s0, 4(sp)
 		addi sp, sp, 8
 		ret
+
 ###########################################################################################################
 
 verificaAbaixo:
@@ -217,3 +227,35 @@ pegaCabeca:
 	add t0, s4, s0 	# pega o endereco da cabeca da cobra
 	lw t0, (t0) 	# Carrega a coordenada
 	ret
+
+###########################################################################################################
+Grow:
+	lw s0, 0(s4) 	# Carrega tamanho da cobra
+	addi s0, s0, 1
+	sw s0, 0(s4) 	# Guarda novo tamanho
+	
+	slli s0, s0, 2	# Multiplica por 4
+	add a0, s4, s0 	# pega o endereco da cabeca da cobra
+	sw s2, 0(a0)	# Guarda nova cabe�a
+	j FinishAfterGrow
+
+###########################################################################################################
+# GrowLeft:
+# 	lw s0, 0(s4) 	# Carrega tamanho da cobra
+# 	addi s0, s0, 1
+# 	sw s0, 0(s4) 	# Guarda novo tamanho
+	
+# 	slli s0, s0, 2	# Multiplica por 4
+# 	add a0, s4, s0 	# pega o endereco da cabeca da cobra
+# 	sw s2, 0(a0)	# Guarda nova cabe�a
+# 	j FinishAfterGrow
+
+###########################################################################################################
+FinishAfterGrow:
+	lw ra, 0(sp)
+	lw s0, 4(sp)
+	lw s1, 8(sp)
+	lw s2, 12(sp)
+	lw s3, 16(sp)
+	addi sp, sp, 20
+	ret	

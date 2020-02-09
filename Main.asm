@@ -6,9 +6,9 @@ cobra: 	.align 2 #Align in words
 	
 .text
 
-la tp,exceptionHandling	# carrega em tp o endereço base das rotinas do sistema ECALL
-csrw tp,utvec 		# seta utvec para o endereço tp
-csrsi ustatus,1 	# seta o bit de habilitação de interrupção em ustatus (reg 0)
+la tp,exceptionHandling	# carrega em tp o endereï¿½o base das rotinas do sistema ECALL
+csrw tp,utvec 		# seta utvec para o endereï¿½o tp
+csrsi ustatus,1 	# seta o bit de habilitaï¿½ï¿½o de interrupï¿½ï¿½o em ustatus (reg 0)
 
 li s0, 0x00000061 # Valor da tecla a
 li s1, 0x00000064 # Valor da tecla d
@@ -28,16 +28,18 @@ sw t0, 12(s4)		#coloca a cabeca no vetor
 
 jal TelaFundo
 jal DesenhaCobra
-li s6, 10000
-jal Sleep
 jal Frutinha
-jal Sleep
+addi s5, a0, 0 # Coordenada da fruta
+
+
 
 li a3, 2 #tamanho da cobra
 li a1, 0x0015000F
 li a2, 0x0014000F
 
-KEYBOARD: 	jal KEY2
+KEYBOARD: 	li s6, 250
+		jal Sleep
+		jal KEY2
 		beq s11, s1, R # compara se o valor lido do teclado eh 'd'
 		beq s11, s3, U # compara se o valor lido do teclado eh 'w'
 		beq s11, s2, D # compara se o valor lido do teclado eh 's'
