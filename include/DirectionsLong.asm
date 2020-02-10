@@ -11,7 +11,7 @@ right:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	
 	addi a0, s4, 4	# pega endereco do rabo da cobra
 	lw a0, (a0) 	# carrega valor do rabo
-	li a1, 0x00228B22	# cor de fundo
+	li a1, 0xf0f0f0	# cor de fundo
 	jal Ponto 	# apaga rabo da cobra
 	
 	lw s0, 0(s4) 	# Carrega tamanho da cobra
@@ -56,7 +56,7 @@ down:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	
 	addi a0, s4, 4	# pega endereco do rabo da cobra
 	lw a0, (a0) 	# carrega valor do rabo
-	li a1, 0x00228B22	# cor de fundo
+	li a1, 0xf0f0f0	# cor de fundo
 	jal Ponto 	# apaga rabo da cobra
 	
 	lw s0, 0(s4) 	# Carrega tamanho da cobra
@@ -102,7 +102,7 @@ up:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	
 	addi a0, s4, 4	# pega endereco do rabo da cobra
 	lw a0, (a0) 	# carrega valor do rabo
-	li a1, 0x00228B22	# cor de fundo
+	li a1, 0xf0f0f0	# cor de fundo
 	jal Ponto 	# apaga rabo da cobra
 	
 	lw s0, 0(s4) 	# Carrega tamanho da cobra
@@ -146,7 +146,7 @@ left:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	
 	addi a0, s4, 4	# pega endereco do rabo da cobra
 	lw a0, (a0) 	# carrega valor do rabo
-	li a1, 0x00228B22	# cor de fundo
+	li a1, 0xf0f0f0	# cor de fundo
 	jal Ponto 	# apaga rabo da cobra
 	
 	lw s0, 0(s4) 	# Carrega tamanho da cobra

@@ -26,7 +26,7 @@ right:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 		
 	addi a0, s4, 4	# pega endereco do rabo da cobra
 	lw a0, (a0) 	# carrega valor do rabo
-	li a1, 0x00228B22	# cor de fundo
+	li a1, 0xf0f0f0	# cor de fundo
 	jal PontoDireita 	# apaga rabo da cobra
 	
 	addi s0, s0, -4 # faz o loop n?o pegar valores de endereco indevido
@@ -60,7 +60,7 @@ down:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 
 	addi a0, s4, 4	# pega endereco do rabo da cobra
 	lw a0, (a0) 	# carrega valor do rabo
-	li a1, 0x00228B22	# cor de fundo
+	li a1, 0xf0f0f0	# cor de fundo
 	jal PontoBaixo 	# apaga rabo da cobra
 	
 	addi s0, s0, -4 # faz o loop n?o pegar valores de endereco indevido
@@ -94,7 +94,7 @@ up:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 
 	addi a0, s4, 4	# pega endereco do rabo da cobra
 	lw a0, (a0) 	# carrega valor do rabo
-	li a1, 0x00228B22	# cor de fundo
+	li a1, 0xf0f0f0	# cor de fundo
 	jal PontoSobe	# apaga rabo da cobra
 	
 	addi s0, s0, -4 # faz o loop n?o pegar valores de endereco indevido
@@ -128,7 +128,7 @@ left:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	
 	addi a0, s4, 4	# pega endereco do rabo da cobra
 	lw a0, (a0) 	# carrega valor do rabo
-	li a1, 0x00228B22	# cor de fundo
+	li a1, 0xf0f0f0	# cor de fundo
 	jal PontoEsquerda 	# apaga rabo da cobra
 	
 	addi s0, s0, -4 # faz o loop n?o pegar valores de endereco indevido

@@ -4,6 +4,7 @@ NOTAS_PERDEU: 6,800,67,800,70,600,81,500,76,1000
 cobra: 	.align 2 #Align in words
 	.space 1024
 .include "include/CapaGameOver.data"
+.include "include/ScoreImagem.data"
 .text
 
 la tp,exceptionHandling	# carrega em tp o endere�o base das rotinas do sistema ECALL
@@ -36,6 +37,7 @@ li t0, 0x0016000F
 sw t0, 12(s4)		#coloca a cabeca no vetor
 
 jal TelaFundo
+jal ScoreImg
 jal DesenhaCobra
 jal Frutinha
 addi s5, a0, 0 # Coordenada da fruta
@@ -93,3 +95,4 @@ ecall
 .include "include/TimeSleep.asm"
 .include "include/Score.asm"
 .include "include/PrintCapaGameOver.s"
+.include "include/ScoreImagem.asm"

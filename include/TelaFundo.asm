@@ -2,13 +2,13 @@
 
 TelaFundo:
 
-#la tp,exceptionHandling	# carrega em tp o endereço base das rotinas do sistema ECALL
-#csrw tp,utvec 		# seta utvec para o endereço tp
-#csrsi ustatus,1 	# seta o bit de habilitação de interrupção em ustatus (reg 0)
+#la tp,exceptionHandling	# carrega em tp o endereï¿½o base das rotinas do sistema ECALL
+#csrw tp,utvec 		# seta utvec para o endereï¿½o tp
+#csrsi ustatus,1 	# seta o bit de habilitaï¿½ï¿½o de interrupï¿½ï¿½o em ustatus (reg 0)
 
 # Pinta a tela de verde
 
-li a0, 0x00228B22
+li a0, 0xf0f0f0
 li a1, 0
 li a7, 148
 ecall
