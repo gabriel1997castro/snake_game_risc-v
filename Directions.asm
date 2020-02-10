@@ -144,7 +144,8 @@ directionLoop:	beq s0, s1, endDirectionLoop
 		addi s1, s1, -4
 		j directionLoop
 		
-endDirectionLoop:	li s6, 250
+endDirectionLoop:	
+			#li s6, 250
 			jal Sleep
 			sw s2, (s3)
 			lw ra, 0(sp)
@@ -257,7 +258,7 @@ Grow:	jal MusicaComeu
 
 ###########################################################################################################
 FinishAfterGrow:
-	li s6, 250
+	#li s6, 250
 	jal Sleep
 	jal Frutinha
 	addi s5, a0, 0 # Endere�o da nova frutinha

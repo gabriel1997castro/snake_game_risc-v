@@ -19,7 +19,8 @@ li s0, 0x00000061 # Valor da tecla a
 li s1, 0x00000064 # Valor da tecla d
 li s2, 0x00000073 # Valor da letra s
 li s3, 0x00000077 # Valor da letra w
-addi s7, s7, 0		  # Pontuação
+li s6, 250
+li s7, 0		  # Pontuação
 li s11, 0x00000064
 
 
