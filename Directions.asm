@@ -230,6 +230,8 @@ pegaCabeca:
 
 ###########################################################################################################
 Grow:
+	addi s7, s7 , 7
+	jal Score
 	jal MusicaComeu
 	lw s0, 0(s4) 	# Carrega tamanho da cobra
 	addi s0, s0, 1

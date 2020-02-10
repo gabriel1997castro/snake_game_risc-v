@@ -14,6 +14,8 @@ li s0, 0x00000061 # Valor da tecla a
 li s1, 0x00000064 # Valor da tecla d
 li s2, 0x00000073 # Valor da letra s
 li s3, 0x00000077 # Valor da letra w
+addi s6, s6, 0		  # Pontuação
+
 
 iniciaCobra:
 la s4, cobra 		#endereco do vetor cobra
@@ -36,6 +38,7 @@ addi s5, a0, 0 # Coordenada da fruta
 li a3, 2 #tamanho da cobra
 li a1, 0x0015000F
 li a2, 0x0014000F
+jal Score
 
 KEYBOARD: 	li s6, 250
 		jal Sleep
@@ -71,6 +74,7 @@ FIMSNAKE:
 li a7, 10
 ecall
 
+.include "frutinha.asm"
 .include "SYSTEMv17b.s"
 .include "TelaFundo.asm"
 #.include "Ponto.asm"
@@ -84,5 +88,5 @@ ecall
 .include "DesenhaCobra.asm"
 .include "MusicaPerdeu.s"
 .include "MusicaComeu.s"
-.include "frutinha.asm"
 .include "TimeSleep.asm"
+.include "Score.asm"
