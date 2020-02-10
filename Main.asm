@@ -6,6 +6,8 @@ cobra: 	.align 2 #Align in words
 .include "include/CapaGameOver.data"
 .include "include/HomeImg.data"
 .include "include/ScoreImagem.data"
+gameOverString: 	.string "GAME OVER"
+
 .text
 
 la tp,exceptionHandling	# carrega em tp o endere�o base das rotinas do sistema ECALL
