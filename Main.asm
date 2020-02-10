@@ -1,6 +1,6 @@
 .data
 NUM_MUS_PERDEU: .word 5
-NOTAS_PERDEU: 63,800,67,800,70,600,81,500,76,1000 
+NOTAS_PERDEU: 6,800,67,800,70,600,81,500,76,1000 
 cobra: 	.align 2 #Align in words
 	.space 1024
 	
@@ -14,7 +14,7 @@ li s0, 0x00000061 # Valor da tecla a
 li s1, 0x00000064 # Valor da tecla d
 li s2, 0x00000073 # Valor da letra s
 li s3, 0x00000077 # Valor da letra w
-addi s6, s6, 0		  # Pontuação
+addi s7, s7, 0		  # Pontuação
 
 
 iniciaCobra:
@@ -40,9 +40,7 @@ li a1, 0x0015000F
 li a2, 0x0014000F
 jal Score
 
-KEYBOARD: 	li s6, 250
-		jal Sleep
-		jal KEY2
+KEYBOARD: 	jal KEY2
 		beq s11, s1, R # compara se o valor lido do teclado eh 'd'
 		beq s11, s3, U # compara se o valor lido do teclado eh 'w'
 		beq s11, s2, D # compara se o valor lido do teclado eh 's'
