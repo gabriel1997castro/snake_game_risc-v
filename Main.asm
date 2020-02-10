@@ -4,6 +4,7 @@ NOTAS_PERDEU: 6,800,67,800,70,600,81,500,76,1000
 cobra: 	.align 2 #Align in words
 	.space 1024
 .include "include/CapaGameOver.data"
+.include "include/HomeImg.data"
 .include "include/ScoreImagem.data"
 .text
 
@@ -12,9 +13,6 @@ csrw tp,utvec 		# seta utvec para o endere�o tp
 csrsi ustatus,1 	# seta o bit de habilita��o de interrup��o em ustatus (reg 0)
 
 IniciaJogo:
-li t3, 0		# Frame 1
-li t4, 0xFF200604
-sw t3, (t4)
 
 li s0, 0x00000061 # Valor da tecla a
 li s1, 0x00000064 # Valor da tecla d
@@ -36,12 +34,19 @@ sw t0, 8(s4)		#coloca a cabeca no vetor
 li t0, 0x0016000F
 sw t0, 12(s4)		#coloca a cabeca no vetor
 
+jal PrintHomeImg
+li s6, 3000
+jal Sleep
+li t3, 0		# Frame 1
+li t4, 0xFF200604
+sw t3, (t4)
 jal TelaFundo
 jal ScoreImg
 jal DesenhaCobra
 jal Frutinha
 addi s5, a0, 0 # Coordenada da fruta
 
+li s6, 250 #Tempo
 li a3, 2 #tamanho da cobra
 li a1, 0x0015000F
 li a2, 0x0014000F
@@ -96,3 +101,4 @@ ecall
 .include "include/Score.asm"
 .include "include/PrintCapaGameOver.s"
 .include "include/ScoreImagem.asm"
+.include "include/homeImg.asm"
