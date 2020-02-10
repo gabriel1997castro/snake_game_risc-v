@@ -252,6 +252,8 @@ Grow:
 
 ###########################################################################################################
 FinishAfterGrow:
+	jal Frutinha
+	addi s5, a0, 0 # Endereço da nova frutinha
 	lw ra, 0(sp)
 	lw s0, 4(sp)
 	lw s1, 8(sp)
