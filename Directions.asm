@@ -230,6 +230,7 @@ pegaCabeca:
 
 ###########################################################################################################
 Grow:
+	jal MusicaComeu
 	lw s0, 0(s4) 	# Carrega tamanho da cobra
 	addi s0, s0, 1
 	sw s0, 0(s4) 	# Guarda novo tamanho
@@ -253,7 +254,7 @@ Grow:
 ###########################################################################################################
 FinishAfterGrow:
 	jal Frutinha
-	addi s5, a0, 0 # Endereço da nova frutinha
+	addi s5, a0, 0 # Endereï¿½o da nova frutinha
 	lw ra, 0(sp)
 	lw s0, 4(sp)
 	lw s1, 8(sp)

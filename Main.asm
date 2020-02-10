@@ -83,5 +83,6 @@ ecall
 .include "Lose.asm"
 .include "DesenhaCobra.asm"
 .include "MusicaPerdeu.s"
+.include "MusicaComeu.s"
 .include "frutinha.asm"
 .include "TimeSleep.asm"

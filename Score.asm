@@ -1,18 +1,18 @@
 #.data
 
 .text
-#la tp,exceptionHandling	# carrega em tp o endereço base das rotinas do sistema ECALL
-#csrw tp,utvec 		# seta utvec para o endereço tp
-#csrsi ustatus,1 		# seta o bit de habilitação de interrupção em ustatus (reg 0)
+#la tp,exceptionHandling	# carrega em tp o endereï¿½o base das rotinas do sistema ECALL
+#csrw tp,utvec 		# seta utvec para o endereï¿½o tp
+#csrsi ustatus,1 		# seta o bit de habilitaï¿½ï¿½o de interrupï¿½ï¿½o em ustatus (reg 0)
 
 #addi t0, t0, 20
 
 # syscall print int	
 Score: 
-	#Fazer o t0 receber o valor da pontuação
+	#Fazer o t0 receber o valor da pontuaï¿½ï¿½o
 	
 	li a7,101
-	mv a0,t0
+	mv a0,s6
 	li a1,15
 	li a2,20
 	li a3,0x00FF
