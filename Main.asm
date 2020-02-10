@@ -3,7 +3,7 @@ NUM_MUS_PERDEU: .word 5
 NOTAS_PERDEU: 6,800,67,800,70,600,81,500,76,1000 
 cobra: 	.align 2 #Align in words
 	.space 1024
-.include "CapaGameOver.data"
+.include "include/CapaGameOver.data"
 .text
 
 la tp,exceptionHandling	# carrega em tp o endere�o base das rotinas do sistema ECALL
@@ -77,19 +77,19 @@ FIMSNAKE:
 li a7, 10
 ecall
 
-.include "frutinha.asm"
-.include "SYSTEMv17b.s"
-.include "TelaFundo.asm"
-.include "PontoDireita.asm"
-.include "PontoEsquerda.asm"
-.include "PontoBaixo.asm"
-.include "PontoSobe.asm"
-.include "key.asm"
-.include "Directions.asm"
-.include "Lose.asm"
-.include "DesenhaCobra.asm"
-.include "MusicaPerdeu.s"
-.include "MusicaComeu.s"
-.include "TimeSleep.asm"
-.include "Score.asm"
-.include "PrintCapaGameOver.s"
+.include "include/frutinha.asm"
+.include "include/SYSTEMv17b.s"
+.include "include/TelaFundo.asm"
+.include "include/PontoDireita.asm"
+.include "include/PontoEsquerda.asm"
+.include "include/PontoBaixo.asm"
+.include "include/PontoSobe.asm"
+.include "include/key.asm"
+.include "include/Directions.asm"
+.include "include/Lose.asm"
+.include "include/DesenhaCobra.asm"
+.include "include/MusicaPerdeu.s"
+.include "include/MusicaComeu.s"
+.include "include/TimeSleep.asm"
+.include "include/Score.asm"
+.include "include/PrintCapaGameOver.s"
