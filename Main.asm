@@ -3,18 +3,24 @@ NUM_MUS_PERDEU: .word 5
 NOTAS_PERDEU: 6,800,67,800,70,600,81,500,76,1000 
 cobra: 	.align 2 #Align in words
 	.space 1024
-	
+.include "CapaGameOver.data"
 .text
 
 la tp,exceptionHandling	# carrega em tp o endere�o base das rotinas do sistema ECALL
 csrw tp,utvec 		# seta utvec para o endere�o tp
 csrsi ustatus,1 	# seta o bit de habilita��o de interrup��o em ustatus (reg 0)
 
+IniciaJogo:
+li t3, 0		# Frame 1
+li t4, 0xFF200604
+sw t3, (t4)
+
 li s0, 0x00000061 # Valor da tecla a
 li s1, 0x00000064 # Valor da tecla d
 li s2, 0x00000073 # Valor da letra s
 li s3, 0x00000077 # Valor da letra w
 addi s7, s7, 0		  # Pontuação
+li s11, 0x00000064
 
 
 iniciaCobra:
@@ -85,3 +91,4 @@ ecall
 .include "MusicaComeu.s"
 .include "TimeSleep.asm"
 .include "Score.asm"
+.include "PrintCapaGameOver.s"

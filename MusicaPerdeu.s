@@ -16,7 +16,7 @@ sw s1, 12(sp)
 	li a1,1500		# define a duração da nota em ms
 	li a2,127		# define o instrumento
 	li a3,127		# define o volume
-	li a7,33		# define o syscall
+	li a7,31		# define o syscall
 	ecall			# toca a nota
 	
 	la s0,NUM_MUS_PERDEU		# define o endereço do número de notas
@@ -32,9 +32,9 @@ LOOPSOUND:	beq t0,s1, FIMSOUND	# contador chegou no final? então  vá para FIM
 		lw a1,4(s0)		# le a duracao da nota
 		li a7,31		# define a chamada de syscall
 		ecall			# toca a nota
-		mv a0,a1		# passa a duração da nota para a pausa
-		li a7,32		# define a chamada de syscal 
-		ecall			# realiza uma pausa de a0 ms
+		#mv a0,a1		# passa a duração da nota para a pausa
+		#li a7,32		# define a chamada de syscal 
+		#ecall			# realiza uma pausa de a0 ms
 		addi s0,s0,8		# incrementa para o endereço da próxima nota
 		addi t0,t0,1		# incrementa o contador de notas
 		j LOOPSOUND			# volta ao loop
