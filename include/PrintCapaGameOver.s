@@ -4,9 +4,8 @@
 PrintLose:	
 	li t1,0xFF100000# endereco inicial da Memoria VGA - Frame 1
 	li t2,0xFF112C00	# endereco final 
-	li t3, 1		# Frame 1
+	li t5, 1		# Frame 1
 	li t4, 0xFF200604
-	sw t3, (t4)
 	la s8,CapaGameOver	# endere�o dos dados da tela na memoria
 	addi s8,s8,8		# primeiro pixels depois das informa��es de nlin ncol
 LoopGameOver: 	beq t1,t2,FimGameOver	# Se for o �ltimo endere�o ent�o sai do loop
@@ -16,4 +15,5 @@ LoopGameOver: 	beq t1,t2,FimGameOver	# Se for o �ltimo endere�o ent�o sai 
 	addi s8,s8,4
 	j LoopGameOver		# volta a verificar
 FimGameOver:
+	sw t5, (t4)
 	ret
