@@ -33,8 +33,6 @@ jal DesenhaCobra
 jal Frutinha
 addi s5, a0, 0 # Coordenada da fruta
 
-
-
 li a3, 2 #tamanho da cobra
 li a1, 0x0015000F
 li a2, 0x0014000F
@@ -75,7 +73,6 @@ ecall
 .include "frutinha.asm"
 .include "SYSTEMv17b.s"
 .include "TelaFundo.asm"
-#.include "Ponto.asm"
 .include "PontoDireita.asm"
 .include "PontoEsquerda.asm"
 .include "PontoBaixo.asm"

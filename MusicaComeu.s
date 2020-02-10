@@ -9,7 +9,7 @@ sw a3, 4(sp)
 	li a1,800		# define a duração da nota em ms
 	li a2,120		# define o instrumento
 	li a3,127		# define o volume
-	li a7,33		# define o syscall
+	li a7,31		# define o syscall
 	ecall			# toca a nota
 	
 	#li a7,10		# define o syscall Exit

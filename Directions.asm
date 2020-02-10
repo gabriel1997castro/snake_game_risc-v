@@ -21,6 +21,7 @@ right:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	li a1, 0x0000	# cor preta
 	jal PontoDireita
 	
+	jal VerificaCobra
 	beq s5, s2, Grow	
 		
 	addi a0, s4, 4	# pega endereco do rabo da cobra
@@ -53,7 +54,8 @@ down:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	add s3, s4, s0 # ultimo endereco do vetor
 	li a1, 0x0000	# cor preta
 	jal PontoBaixo
-	
+
+	jal VerificaCobra
 	beq s5, s2, Grow
 
 	addi a0, s4, 4	# pega endereco do rabo da cobra
@@ -63,6 +65,7 @@ down:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	
 	addi s0, s0, -4 # faz o loop n?o pegar valores de endereco indevido
 	jal directionLoop
+
 ########################################################################################################################
 up:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	sw ra, 0(sp)
@@ -86,6 +89,7 @@ up:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	li a1, 0x0000	# cor preta
 	jal PontoSobe
 	
+	jal VerificaCobra
 	beq s5, s2, Grow
 
 	addi a0, s4, 4	# pega endereco do rabo da cobra
@@ -95,6 +99,7 @@ up:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	
 	addi s0, s0, -4 # faz o loop n?o pegar valores de endereco indevido
 	jal directionLoop
+
 ########################################################################################################################
 left:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	sw ra, 0(sp)
@@ -117,7 +122,8 @@ left:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	add s3, s4, s0 # ultimo endereco do vetor
 	li a1, 0x0000	# cor preta
 	jal PontoEsquerda
-
+	
+	jal VerificaCobra
 	beq s5, s2, Grow
 	
 	addi a0, s4, 4	# pega endereco do rabo da cobra
@@ -127,6 +133,7 @@ left:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	
 	addi s0, s0, -4 # faz o loop n?o pegar valores de endereco indevido
 	jal directionLoop
+
 ###########################################################################################################
 directionLoop:	beq s0, s1, endDirectionLoop
 		addi s1, s1, 8
@@ -147,6 +154,7 @@ endDirectionLoop:	li s6, 250
 			lw s3, 16(sp)
 			addi sp, sp, 20
 			ret	
+
 ###########################################################################################################
 verificaDireita:
 	addi sp, sp, -8	# espaco na pilha para registradores salvos e ra
@@ -164,7 +172,7 @@ verificaDireita:
 		lw s0, 4(sp)
 		addi sp, sp, 8
 		ret
-		
+
 ###########################################################################################################
 verificaEsquerda:
 	addi sp, sp, -8	# espaco na pilha para registradores salvos e ra
@@ -224,17 +232,20 @@ verificaAbaixo:
 ###########################################################################################################
 
 pegaCabeca:
+	addi sp, sp, -4
+	sw s0, (sp)
 	lw s0, 0(s4) 	# Carrega tamanho da cobra
 	slli s0, s0, 2	# Multiplica por 4
 	add t0, s4, s0 	# pega o endereco da cabeca da cobra
 	lw t0, (t0) 	# Carrega a coordenada
+	sw s0, (sp)
+	addi sp, sp, 4
 	ret
 
 ###########################################################################################################
-Grow:
+Grow:	jal MusicaComeu
 	addi s7, s7 , 7
 	jal Score
-	jal MusicaComeu
 	lw s0, 0(s4) 	# Carrega tamanho da cobra
 	addi s0, s0, 1
 	sw s0, 0(s4) 	# Guarda novo tamanho
@@ -245,18 +256,9 @@ Grow:
 	j FinishAfterGrow
 
 ###########################################################################################################
-# GrowLeft:
-# 	lw s0, 0(s4) 	# Carrega tamanho da cobra
-# 	addi s0, s0, 1
-# 	sw s0, 0(s4) 	# Guarda novo tamanho
-	
-# 	slli s0, s0, 2	# Multiplica por 4
-# 	add a0, s4, s0 	# pega o endereco da cabeca da cobra
-# 	sw s2, 0(a0)	# Guarda nova cabe�a
-# 	j FinishAfterGrow
-
-###########################################################################################################
 FinishAfterGrow:
+	li s6, 250
+	jal Sleep
 	jal Frutinha
 	addi s5, a0, 0 # Endere�o da nova frutinha
 	lw ra, 0(sp)
@@ -266,3 +268,31 @@ FinishAfterGrow:
 	lw s3, 16(sp)
 	addi sp, sp, 20
 	ret	
+	
+###########################################################################################################
+VerificaCobra: #Recebe em s2 coordenada da pr�xima cabeca
+	
+	addi sp, sp, -16	# espaco na pilha para registradores salvos e ra
+	sw ra, 0(sp)
+	sw s0, 4(sp)
+	sw s4, 8(sp)
+	sw s5, 12(sp)
+	
+	addi s0, zero, 0 	# Contador
+	addi t1, zero, 0 	# Contador por endereco
+	lw s5, 0(s4) 		# Tamanho da cobra
+VCL:	beq s0, s5, FimVerificaCobra
+	addi t1, t1, 4	# Proximo endereco da cobra
+	add t2, t1, s4	# Endereco offset + multiplo de 4 
+	lw t2, (t2)	
+	beq s2, t2, LOSE
+	addi s0, s0, 1
+	j VCL
+FimVerificaCobra:
+	lw ra, 0(sp)
+	lw s0, 4(sp)
+	lw s4, 8(sp)
+	lw s5, 12(sp)
+	addi sp, sp, 16
+	ret
+	
