@@ -6,13 +6,8 @@ right:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	sw s1, 8(sp)
 	sw s2, 12(sp)
 	sw s3, 16(sp)
-
-	li s1, 0	# Contador inicia em 0
 	
-	addi a0, s4, 4	# pega endereco do rabo da cobra
-	lw a0, (a0) 	# carrega valor do rabo
-	li a1, 0x00228B22	# cor de fundo
-	jal PontoDireita 	# apaga rabo da cobra
+	li s1, 0	# Contador inicia em 0
 	
 	lw s0, 0(s4) 	# Carrega tamanho da cobra
 	slli s0, s0, 2	# Multiplica por 4
@@ -25,6 +20,11 @@ right:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	add s3, s4, s0 # ultimo endereco do vetor
 	li a1, 0x0000	# cor preta
 	jal PontoDireita
+		
+	addi a0, s4, 4	# pega endereco do rabo da cobra
+	lw a0, (a0) 	# carrega valor do rabo
+	li a1, 0x00228B22	# cor de fundo
+	jal PontoDireita 	# apaga rabo da cobra
 	
 	addi s0, s0, -4 # faz o loop n?o pegar valores de endereco indevido
 	jal directionLoop
@@ -38,10 +38,6 @@ down:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 
 	li s1, 0	# Contador inicia em 0
 	
-	addi a0, s4, 4	# pega endereco do rabo da cobra
-	lw a0, (a0) 	# carrega valor do rabo
-	li a1, 0x00228B22	# cor de fundo
-	jal PontoBaixo 	# apaga rabo da cobra
 	
 	lw s0, 0(s4) 	# Carrega tamanho da cobra
 	slli s0, s0, 2	# Multiplica por 4
@@ -55,6 +51,11 @@ down:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	li a1, 0x0000	# cor preta
 	jal PontoBaixo
 	
+	addi a0, s4, 4	# pega endereco do rabo da cobra
+	lw a0, (a0) 	# carrega valor do rabo
+	li a1, 0x00228B22	# cor de fundo
+	jal PontoBaixo 	# apaga rabo da cobra
+	
 	addi s0, s0, -4 # faz o loop n?o pegar valores de endereco indevido
 	jal directionLoop
 ########################################################################################################################
@@ -67,10 +68,6 @@ up:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 
 	li s1, 0	# Contador inicia em 0
 	
-	addi a0, s4, 4	# pega endereco do rabo da cobra
-	lw a0, (a0) 	# carrega valor do rabo
-	li a1, 0x00228B22	# cor de fundo
-	jal PontoSobe	# apaga rabo da cobra
 	
 	lw s0, 0(s4) 	# Carrega tamanho da cobra
 	slli s0, s0, 2	# Multiplica por 4
@@ -84,6 +81,11 @@ up:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	li a1, 0x0000	# cor preta
 	jal PontoSobe
 	
+	addi a0, s4, 4	# pega endereco do rabo da cobra
+	lw a0, (a0) 	# carrega valor do rabo
+	li a1, 0x00228B22	# cor de fundo
+	jal PontoSobe	# apaga rabo da cobra
+	
 	addi s0, s0, -4 # faz o loop n?o pegar valores de endereco indevido
 	jal directionLoop
 ########################################################################################################################
@@ -96,12 +98,6 @@ left:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 
 	li s1, 0	# Contador inicia em 0
 	
-	addi a0, s4, 4	# pega endereco do rabo da cobra
-	lw a0, (a0) 	# carrega valor do rabo
-	li a1, 0x00228B22	# cor de fundo
-	#li t0, 0x00010000 # valor um na coordenada y
-	#add a0, a0, t0
-	jal PontoEsquerda 	# apaga rabo da cobra
 	
 	lw s0, 0(s4) 	# Carrega tamanho da cobra
 	slli s0, s0, 2	# Multiplica por 4
@@ -113,8 +109,12 @@ left:	addi sp, sp, -20	# espaco na pilha para registradores salvos e ra
 	
 	add s3, s4, s0 # ultimo endereco do vetor
 	li a1, 0x0000	# cor preta
-	#add a0, a0, t0
 	jal PontoEsquerda
+	
+	addi a0, s4, 4	# pega endereco do rabo da cobra
+	lw a0, (a0) 	# carrega valor do rabo
+	li a1, 0x00228B22	# cor de fundo
+	jal PontoEsquerda 	# apaga rabo da cobra
 	
 	addi s0, s0, -4 # faz o loop n?o pegar valores de endereco indevido
 	jal directionLoop
@@ -134,7 +134,7 @@ endDirectionLoop:	sw s2, (s3)
 			lw s1, 8(sp)
 			lw s2, 12(sp)
 			lw s3, 16(sp)
-			addi sp, sp, 16
+			addi sp, sp, 20
 			ret	
 ###########################################################################################################
 verificaDireita:

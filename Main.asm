@@ -29,6 +29,7 @@ sw t0, 12(s4)		#coloca a cabeca no vetor
 jal TelaFundo
 jal DesenhaCobra
 jal Frutinha
+addi s5, a0, 0 # Coordenada da fruta
 
 li a3, 2 #tamanho da cobra
 li a1, 0x0015000F
