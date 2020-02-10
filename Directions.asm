@@ -246,7 +246,9 @@ pegaCabeca:
 ###########################################################################################################
 Grow:	jal MusicaComeu
 	addi s7, s7 , 7
-	jal Score
+	li t0, 50
+	blt t0, s6, Harder
+	ContinueGrow: jal Score
 	lw s0, 0(s4) 	# Carrega tamanho da cobra
 	addi s0, s0, 1
 	sw s0, 0(s4) 	# Guarda novo tamanho
@@ -289,6 +291,8 @@ VCL:	beq s0, s5, FimVerificaCobra
 	beq s2, t2, LOSE
 	addi s0, s0, 1
 	j VCL
+
+###########################################################################################################
 FimVerificaCobra:
 	lw ra, 0(sp)
 	lw s0, 4(sp)
@@ -296,4 +300,7 @@ FimVerificaCobra:
 	lw s5, 12(sp)
 	addi sp, sp, 16
 	ret
-	
+###########################################################################################################
+Harder:
+addi s6, s6, -10
+j ContinueGrow
