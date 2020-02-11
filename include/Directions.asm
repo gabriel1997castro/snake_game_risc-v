@@ -248,6 +248,7 @@ Grow:	jal MusicaComeu
 	addi s7, s7 , 7
 	blt zero, s6, Harder
 	ContinueGrow: jal Score
+	jal Speed
 	lw s0, 0(s4) 	# Carrega tamanho da cobra
 	addi s0, s0, 1
 	sw s0, 0(s4) 	# Guarda novo tamanho
@@ -301,5 +302,6 @@ FimVerificaCobra:
 	ret
 ###########################################################################################################
 Harder:
-addi s6, s6, -10
+addi s6, s6, -15
+addi s9, s9, 1
 j ContinueGrow

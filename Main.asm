@@ -6,6 +6,7 @@ cobra: 	.align 2 #Align in words
 .include "include/CapaGameOver.data"
 .include "include/HomeImg.data"
 .include "include/ScoreImagem.data"
+.include "include/SpeedImg.data"
 gameOverString: 	.string "GAME OVER"
 
 .text
@@ -22,6 +23,7 @@ li s2, 0x00000073 # Valor da letra s
 li s3, 0x00000077 # Valor da letra w
 li s6, 250
 li s7, 0		  # Pontuação
+li s9, 5		  # Pontuação
 li s11, 0x00000064
 
 
@@ -44,6 +46,7 @@ li t4, 0xFF200604
 sw t3, (t4)
 jal TelaFundo
 jal ScoreImg
+jal PrintSpeedImg
 jal DesenhaCobra
 jal Frutinha
 addi s5, a0, 0 # Coordenada da fruta
@@ -53,6 +56,7 @@ li a3, 2 #tamanho da cobra
 li a1, 0x0015000F
 li a2, 0x0014000F
 jal Score
+jal Speed
 
 KEYBOARD: 	jal KEY2
 		beq s11, s1, R # compara se o valor lido do teclado eh 'd'
@@ -101,6 +105,8 @@ ecall
 .include "include/MusicaComeu.s"
 .include "include/TimeSleep.asm"
 .include "include/Score.asm"
+.include "include/Speed.asm"
 .include "include/PrintCapaGameOver.s"
-.include "include/ScoreImagem.asm"
+.include "include/ScoreImg.asm"
+.include "include/SpeedImg.asm"
 .include "include/homeImg.asm"
