@@ -21,7 +21,9 @@ There are some constant registers because they are used frequently in the code:
 | s4            | Vector with the coordinates of the snake, the first one is the lenght |
 | s5            | Coordinate of the fruit                                               |
 | s6            | Time of Sleep function                                                |
-| s7            | Score                                                                 |
+| s7            | Score and Speed Images                                                |
+| s8            | Score                                                                 |
+| s9            | Speed                                                                 |
 | s11           | The last key pressed                                                  |
 
 
