@@ -43,6 +43,7 @@ li s6, 3000
 jal Sleep
 li t3, 0		# Frame 1
 li t4, 0xFF200604
+jal KEY1
 sw t3, (t4)
 jal TelaFundo
 jal ScoreImg
