@@ -34,8 +34,18 @@ There are some constant registers because they are used frequently in the code:
 
 ### __Modules and Functions__
 The game was made using the like an unit an small square of 8 x 8.
-* MAIN FILE - The code to call all the principal functions in the game.
-* START_GAME - Label in the main.asm that start and restart the game.
-* DOT - Function that draw the code unit of 8 x 8.
-* FRUIT - The function draw an square red fruit.
-* SLEEP - Receive in s6 a value in ms to pause until the next instruction.
+* main - The code to call all the principal functions in the game.
+* square - Function that draw the code unit of 8 x 8.
+* fruit - The function draw an square red fruit.
+* sleep - Receive in s6 a value in ms to pause until the next instruction.
+
+
+
+### __Images of the game__
+
+![alt text](https://github.com/gabriel1997castro/snake_game_risc-v/DocImg/rars.PNG)
+
+![alt text](https://github.com/gabriel1997castro/snake_game_risc-v/DocImg/homescreen.PNG)
+
+![alt text](https://github.com/gabriel1997castro/snake_game_risc-v/DocImg/lose.PNG)
+
