@@ -43,9 +43,9 @@ The game was made using the like an unit an small square of 8 x 8.
 
 ### __Images of the game__
 
-![alt text](https://github.com/gabriel1997castro/snake_game_risc-v/DocImg/rars.PNG)
+![alt text](https://github.com/gabriel1997castro/snake_game_risc-v/blob/master/DocImg/rars.PNG)
 
-![alt text](https://github.com/gabriel1997castro/snake_game_risc-v/DocImg/homescreen.PNG)
+![alt text](https://github.com/gabriel1997castro/snake_game_risc-v/blob/master/DocImg/homescreen.PNG)
 
-![alt text](https://github.com/gabriel1997castro/snake_game_risc-v/DocImg/lose.PNG)
+![alt text](https://github.com/gabriel1997castro/snake_game_risc-v/blob/master/DocImg/lose.PNG)
 
