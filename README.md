@@ -3,9 +3,14 @@
 ##  About
 The game was implemented by students of Control and Automation in the University of Brasilia while studying Computers Architecture and Organization. The participants are:
 * Gabriel Castro
-* Lucas
-* Rodrigo
+* Lucas Ferreira
+* Rodrigo Araújo
 * Stephanie Cardoso
+
+The professor was [Marcelo Antonio Marotta](https://github.com/marcelom87).
+
+The version of rars in this code was modificated by the [Dr. Marcus Vinicius Lamar](https://github.com/mvlamar). There are some pieces
+of code made by Lamar to help his students to do their works. 
 
 ## The game
 
